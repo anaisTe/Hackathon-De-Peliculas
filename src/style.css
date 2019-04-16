@@ -1,8 +1,21 @@
+*{
+    overflow-x: hidden;
+
+}
 .btn-color {
     background-color: #
 }
 .margin {
     margin : 15%;
 }
-
+.show {
+    display: block;
+}
+.hidden {
+    display: none;
+}
+.card-font {
+    font-weight: bold;
+    font-size: 1rem;
+}
 @media()

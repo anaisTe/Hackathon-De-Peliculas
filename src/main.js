@@ -18,8 +18,6 @@ const getFetchJSON = (url) => {
   });
 
 
- // getFetchJSON(`http://www.omdbapi.com/?t=Avengers: Infinity War&apikey=f3f0406a`);
-
   const Adventure = document.getElementById('Adventure');
   const Horror = document.getElementById('Horror');
   const SciFi = document.getElementById('Sci-Fi');
@@ -45,18 +43,7 @@ const getFetchJSON = (url) => {
   };
   idMovies.addEventListener('click',(event)=> {
   const getId = event.target.id;
-  console.log(getId);
 });
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -83,3 +70,50 @@ const getFetchJSON = (url) => {
        paintingData(filterAction, Action, genresAction);
   };
  
+  const getFetchJSON1 = (url) => {
+    fetch(url)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+       console.log(data.Search);
+       printMovies(data.Search)
+
+       
+      })
+      .catch(error => {
+        return error;
+      });
+  };
+const genresPage = document.getElementById('idMovies');
+const search = document.getElementById('search');
+const btnSearch = document.getElementById('btn-search')
+btnSearch.addEventListener('click', () => {  
+  const valueSearch = search.value;
+ getFetchJSON1(`https://www.omdbapi.com/?s=${encodeURI(valueSearch)}&apikey=8f16c99f`);
+  genresPage.classList.remove('show');
+ genresPage.classList.add('hidden');
+ 
+});
+
+// https://www.omdbapi.com/?s=Batman&apikey=8f16c99f
+
+// getFetchJSON1('https://www.omdbapi.com/?s=Batman&apikey=8f16c99f');
+
+const searchMovies = document.getElementById('movieSearch');
+const printMovies = (data) => {
+  let dataToHtml = [];
+  data.forEach((ele) => {
+     let listData = ` 
+     <div class="card col-xs-10 col-sm-10 col-md-3 ">
+     <img src="${ele.Poster}" class="card-img-top" alt="...">
+     <div class=" card-body">
+       <p class="card-font">${ele.Title}</p>
+       <p class="card-text">${ele.Type}</p>
+       <p class="card-text"><small class="text-muted">${ele.Year}</small></p>
+     </div>
+   </div> `;
+          dataToHtml.push(listData); 
+        });
+        searchMovies.innerHTML = dataToHtml.join(' ');
+      };
