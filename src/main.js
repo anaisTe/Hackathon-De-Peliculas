@@ -14,7 +14,7 @@ const getFetchJSON = (url) => {
   };
 
    arr = ['roma','Avengers: Infinity War', 'Annihilation', 'The Hangover','John Wick','it'].forEach((ele) =>{
-    getFetchJSON(`http://www.omdbapi.com/?t=${ele}&apikey=f3f0406a`);
+    getFetchJSON(`https://www.omdbapi.com/?t=${ele}&apikey=f3f0406a`);
   });
 
 
