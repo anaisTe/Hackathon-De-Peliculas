@@ -26,23 +26,39 @@ const getFetchJSON = (url) => {
   const Drama = document.getElementById('Drama');
   const Comedy = document.getElementById('Comedy');
   const Action = document.getElementById('Action');
+  const idMovies = document.getElementById('idMovies');
  
 
  
   const paintingData = (data, id, genres ) => {
     let dataToHtml = [];
     data.forEach((ele) => {
-      console.log(ele.Poster);
        let listData = ` 
-       <div class="card-body">
-       <img src="${ele.Poster}" class="card-img " alt="imgen de ${ele.Title}" >
-            <a href="#" class="btn btn-color"> ${genres} </a>
-          </div>    
+       <div class="card-body" id="${genres}">
+       <img src="${ele.Poster}" id="${genres}" class="card-img " alt="imgen de ${ele.Title} />
+            <a href="#" class="btn btn-color"  id="${genres}"> ${genres} </a>
+      </div>    
      `;
       dataToHtml.push(listData); 
     });
     id.innerHTML = dataToHtml.join(' ');
   };
+  idMovies.addEventListener('click',(event)=> {
+  const getId = event.target.id;
+  console.log(getId);
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   
@@ -67,4 +83,3 @@ const getFetchJSON = (url) => {
        paintingData(filterAction, Action, genresAction);
   };
  
-  
