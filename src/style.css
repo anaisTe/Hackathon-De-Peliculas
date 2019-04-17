@@ -8,6 +8,9 @@
 .margin {
     margin : 15%;
 }
+.margin-card {
+    margin: 2%;;
+}
 .show {
     display: block;
 }
@@ -26,5 +29,9 @@
 }
 .color-medium {
     background-color: #b0bec5;
+}
+
+.center {
+    text-align: center;
 }
 @media()
