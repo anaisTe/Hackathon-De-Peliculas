@@ -14,11 +14,8 @@ const getFetchJSON = (url) => {
   };
 
    arr = ['roma','Avengers: Infinity War', 'Annihilation', 'The Hangover','John Wick','it'].forEach((ele) =>{
-    getFetchJSON(`http://www.omdbapi.com/?t=${ele}&apikey=f3f0406a`);
+    getFetchJSON(`https://www.omdbapi.com/?t=${ele}&apikey=f3f0406a`);
   });
-
-
- // getFetchJSON(`http://www.omdbapi.com/?t=Avengers: Infinity War&apikey=f3f0406a`);
 
   const Adventure = document.getElementById('Adventure');
   const Horror = document.getElementById('Horror');
@@ -29,7 +26,32 @@ const getFetchJSON = (url) => {
   const idMovies = document.getElementById('idMovies');
  
 
- 
+  let arrDataTotal = []
+  const getFetchJSON3 = (url) => {
+    fetch(url)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+       if(data.hasOwnProperty('Title')){
+         arrDataTotal.push(data)
+       }
+      })
+      .catch(error => {
+        return error;
+      });
+  };
+  for(let i = 0; i < 9; i++) {
+      for(let j = 0; j < 9; j++){
+       for(let k= 0; k < 9; k++ ) {  
+        getFetchJSON3(`https://www.omdbapi.com/?i=tt${i}${j}${k}7980&apikey=8f16c99f`);    
+      }
+    }
+  }
+  
+
+const movieFilter = document.getElementById('movieFilter');
+
   const paintingData = (data, id, genres ) => {
     let dataToHtml = [];
     data.forEach((ele) => {
@@ -43,23 +65,30 @@ const getFetchJSON = (url) => {
     });
     id.innerHTML = dataToHtml.join(' ');
   };
-  idMovies.addEventListener('click',(event)=> {
+
+  idMovies.addEventListener('click',(event) => {
   const getId = event.target.id;
-  console.log(getId);
+  const data = arrDataTotal.filter(ele => ele.Genre.indexOf(getId)!==-1);
+  console.log(data);
+  
+  let dataToHtml = [];
+   data.forEach((ele) => {
+    let listData = ` 
+    <div class="card col-xs-10 col-sm-10 col-md-3 color-medium ">
+    <img src="${ele.Poster}" class="card-img-top" alt="...">
+    <div class=" card-body">
+      <p class="card-font">${ele.Title}</p>
+      <p class="card-text">${ele.Genre}</p>
+      <p class="card-text"><small class="text-muted">Año: ${ele.Year}</small></p>
+    </div>
+  </div> `;
+  dataToHtml.push(listData);  
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
+movieFilter.innerHTML = dataToHtml.join(' ');
+movieFilter.classList.remove('hidden');
+movieFilter.classList.add('show');
+idMovies.classList.add('hidden');
+});
 
   
   const arrData = (data) => {      
@@ -83,3 +112,50 @@ const getFetchJSON = (url) => {
        paintingData(filterAction, Action, genresAction);
   };
  
+  const getFetchJSONSearch = (url) => {
+    fetch(url)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+       console.log(data);
+       printMovies(data.Search)
+
+       
+      })
+      .catch(error => {
+        return error;
+      });
+  };
+const genresPage = document.getElementById('idMovies');
+const search = document.getElementById('search');
+// const btnSearch = document.getElementById('btn-search')
+search.addEventListener('search', () => {  
+  const valueSearch = search.value;
+ getFetchJSONSearch(`https://www.omdbapi.com/?s=${encodeURI(valueSearch)}&apikey=f3f0406a`);
+  genresPage.classList.remove('show');
+ genresPage.classList.add('hidden');
+ 
+});
+
+// https://www.omdbapi.com/?s=Batman&apikey=8f16c99f
+
+// getFetchJSON1('https://www.omdbapi.com/?s=Batman&apikey=8f16c99f');
+
+const searchMovies = document.getElementById('movieSearch');
+const printMovies = (data) => {
+  let dataToHtml = [];
+  data.forEach((ele) => {
+     let listData = ` 
+     <div class="card col-xs-10 col-sm-10 col-md-3 color-medium">
+     <img src="${ele.Poster}" class="card-img-top" alt="...">
+     <div class=" card-body">
+       <p class="card-font">${ele.Title}</p>
+       <p class="card-text">${ele.Type}</p>
+       <p class="card-text"><small class="text-muted">${ele.Year}</small></p>
+     </div>
+   </div> `;
+          dataToHtml.push(listData); 
+        });
+        searchMovies.innerHTML = dataToHtml.join(' ');
+       };

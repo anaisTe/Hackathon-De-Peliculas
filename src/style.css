@@ -1,8 +1,40 @@
+*{
+    overflow-x: hidden;
+
+}
 .btn-color {
     background-color: #
 }
 .margin {
     margin : 15%;
 }
+.margin-card {
+    margin: 2%;;
+}
+.show {
+    display: block;
+}
+.hidden {
+    display: none;
+}
+.card-font {
+    font-weight: bold;
+    font-size: 1rem;
+}
+.color-drak {
+    background-color: #808e95;
+}
+.color-ligth {
+    background-color: #e2f1f8;
+}
+.color-medium {
+    background-color: #b0bec5;
+}
+
+.center {
+    text-align: center;
+}
+
+
 
 @media()
