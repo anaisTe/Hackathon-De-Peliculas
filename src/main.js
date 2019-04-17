@@ -48,12 +48,10 @@ const getFetchJSON = (url) => {
       }
     }
   }
-  console.log(arrDataTotal);
+  
 
+const movieFilter = document.getElementById('movieFilter');
 
-
-
- 
   const paintingData = (data, id, genres ) => {
     let dataToHtml = [];
     data.forEach((ele) => {
@@ -67,10 +65,29 @@ const getFetchJSON = (url) => {
     });
     id.innerHTML = dataToHtml.join(' ');
   };
-  idMovies.addEventListener('click',(event)=> {
+
+  idMovies.addEventListener('click',(event) => {
   const getId = event.target.id;
-  console.log(getId);
+  const data = arrDataTotal.filter(ele => ele.Genre.indexOf(getId)!==-1);
+  console.log(data);
   
+  let dataToHtml = [];
+   data.forEach((ele) => {
+    let listData = ` 
+    <div class="card col-xs-10 col-sm-10 col-md-3 ">
+    <img src="${ele.Poster}" class="card-img-top" alt="...">
+    <div class=" card-body">
+      <p class="card-font">${ele.Title}</p>
+      <p class="card-text">${ele.Genre}</p>
+      <p class="card-text"><small class="text-muted">Año: ${ele.Year}</small></p>
+    </div>
+  </div> `;
+  dataToHtml.push(listData);  
+});
+movieFilter.innerHTML = dataToHtml.join(' ');
+movieFilter.classList.remove('hidden');
+movieFilter.classList.add('show');
+idMovies.classList.add('hidden');
 });
 
   
@@ -101,7 +118,7 @@ const getFetchJSON = (url) => {
         return response.json();
       })
       .then(data => {
-       console.log(data.Search);
+       console.log(data);
        printMovies(data.Search)
 
        
@@ -115,7 +132,7 @@ const search = document.getElementById('search');
 const btnSearch = document.getElementById('btn-search')
 btnSearch.addEventListener('click', () => {  
   const valueSearch = search.value;
- getFetchJSONSearch(`https://www.omdbapi.com/?s=${encodeURI(valueSearch)}&apikey=8f16c99f`);
+ getFetchJSONSearch(`https://www.omdbapi.com/?s=${encodeURI(valueSearch)}&apikey=f3f0406a`);
   genresPage.classList.remove('show');
  genresPage.classList.add('hidden');
  
