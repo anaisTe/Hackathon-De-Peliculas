@@ -33,6 +33,7 @@ const getFetchJSON = (url) => {
         return response.json();
       })
       .then(data => {
+        
        if(data.hasOwnProperty('Title')){
          arrDataTotal.push(data)
        }
@@ -44,12 +45,11 @@ const getFetchJSON = (url) => {
   for(let i = 0; i < 9; i++) {
       for(let j = 0; j < 9; j++){
        for(let k= 0; k < 9; k++ ) {  
-        getFetchJSON3(`https://www.omdbapi.com/?i=tt${i}${j}${k}7980&apikey=8f16c99f`);    
+        getFetchJSON3(`https://www.omdbapi.com/?i=tt${i}${j}${k}7980&apikey=6040c356`);    
       }
     }
   }
   
-
 const movieFilter = document.getElementById('movieFilter');
 
   const paintingData = (data, id, genres ) => {
@@ -73,9 +73,15 @@ const movieFilter = document.getElementById('movieFilter');
   
   let dataToHtml = [];
    data.forEach((ele) => {
+    console.log(ele.Poster);
     let listData = ` 
-    <div class="card col-xs-10 col-sm-10 col-md-3 color-medium ">
-    <img src="${ele.Poster}" class="card-img-top" alt="...">
+    <div class=" card col-xs-10 col-sm-10 col-md-3 color-medium ">`; 
+    if(ele.Poster !== 'N/A') {
+      listData +=`<img src="${ele.Poster}" class="card-img-top" alt="...">`;
+    } else {
+      listData +=`<img src="img/img_na.png" class="card-img-top" alt="...">`;
+    }
+    listData +=`
     <div class=" card-body">
       <p class="card-font">${ele.Title}</p>
       <p class="card-text">${ele.Genre}</p>
@@ -85,8 +91,7 @@ const movieFilter = document.getElementById('movieFilter');
   dataToHtml.push(listData);  
 });
 movieFilter.innerHTML = dataToHtml.join(' ');
-movieFilter.classList.remove('hidden');
-movieFilter.classList.add('show');
+
 idMovies.classList.add('hidden');
 });
 
@@ -129,7 +134,6 @@ idMovies.classList.add('hidden');
   };
 const genresPage = document.getElementById('idMovies');
 const search = document.getElementById('search');
-// const btnSearch = document.getElementById('btn-search')
 search.addEventListener('search', () => {  
   const valueSearch = search.value;
  getFetchJSONSearch(`https://www.omdbapi.com/?s=${encodeURI(valueSearch)}&apikey=f3f0406a`);
