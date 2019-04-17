@@ -17,7 +17,6 @@ const getFetchJSON = (url) => {
     getFetchJSON(`https://www.omdbapi.com/?t=${ele}&apikey=f3f0406a`);
   });
 
-
   const Adventure = document.getElementById('Adventure');
   const Horror = document.getElementById('Horror');
   const SciFi = document.getElementById('Sci-Fi');
@@ -26,6 +25,33 @@ const getFetchJSON = (url) => {
   const Action = document.getElementById('Action');
   const idMovies = document.getElementById('idMovies');
  
+
+  let arrDataTotal = []
+  const getFetchJSON3 = (url) => {
+    fetch(url)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+       if(data.hasOwnProperty('Title')){
+         arrDataTotal.push(data)
+       }
+      })
+      .catch(error => {
+        return error;
+      });
+  };
+  for(let i = 0; i < 9; i++) {
+      for(let j = 0; j < 9; j++){
+       for(let k= 0; k < 9; k++ ) {  
+        getFetchJSON3(`https://www.omdbapi.com/?i=tt${i}${j}${k}7980&apikey=8f16c99f`);    
+      }
+    }
+  }
+  console.log(arrDataTotal);
+
+
+
 
  
   const paintingData = (data, id, genres ) => {
@@ -43,10 +69,9 @@ const getFetchJSON = (url) => {
   };
   idMovies.addEventListener('click',(event)=> {
   const getId = event.target.id;
+  console.log(getId);
+  
 });
-
-
-
 
   
   const arrData = (data) => {      
@@ -70,7 +95,7 @@ const getFetchJSON = (url) => {
        paintingData(filterAction, Action, genresAction);
   };
  
-  const getFetchJSON1 = (url) => {
+  const getFetchJSONSearch = (url) => {
     fetch(url)
       .then(response => {
         return response.json();
@@ -90,7 +115,7 @@ const search = document.getElementById('search');
 const btnSearch = document.getElementById('btn-search')
 btnSearch.addEventListener('click', () => {  
   const valueSearch = search.value;
- getFetchJSON1(`https://www.omdbapi.com/?s=${encodeURI(valueSearch)}&apikey=8f16c99f`);
+ getFetchJSONSearch(`https://www.omdbapi.com/?s=${encodeURI(valueSearch)}&apikey=8f16c99f`);
   genresPage.classList.remove('show');
  genresPage.classList.add('hidden');
  
@@ -116,4 +141,4 @@ const printMovies = (data) => {
           dataToHtml.push(listData); 
         });
         searchMovies.innerHTML = dataToHtml.join(' ');
-      };
+       };
