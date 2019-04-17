@@ -1,7 +1,7 @@
 # INFO MOVIES
 
 # Indice
-* Organización (#organizacion)
+* [Organización] (#organizacion)
 * [Descubrimiento e investigación](#descubrimiento-e-investigacion)
 * [Síntesis y definición](#sintesis-y-definicion)
 * [Ideación](#ideacion)
