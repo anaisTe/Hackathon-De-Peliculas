@@ -74,7 +74,7 @@ const movieFilter = document.getElementById('movieFilter');
   let dataToHtml = [];
    data.forEach((ele) => {
     let listData = ` 
-    <div class="card col-xs-10 col-sm-10 col-md-3 ">
+    <div class="card col-xs-10 col-sm-10 col-md-3 color-medium ">
     <img src="${ele.Poster}" class="card-img-top" alt="...">
     <div class=" card-body">
       <p class="card-font">${ele.Title}</p>
@@ -129,8 +129,8 @@ idMovies.classList.add('hidden');
   };
 const genresPage = document.getElementById('idMovies');
 const search = document.getElementById('search');
-const btnSearch = document.getElementById('btn-search')
-btnSearch.addEventListener('click', () => {  
+// const btnSearch = document.getElementById('btn-search')
+search.addEventListener('search', () => {  
   const valueSearch = search.value;
  getFetchJSONSearch(`https://www.omdbapi.com/?s=${encodeURI(valueSearch)}&apikey=f3f0406a`);
   genresPage.classList.remove('show');
@@ -147,7 +147,7 @@ const printMovies = (data) => {
   let dataToHtml = [];
   data.forEach((ele) => {
      let listData = ` 
-     <div class="card col-xs-10 col-sm-10 col-md-3 ">
+     <div class="card col-xs-10 col-sm-10 col-md-3 color-medium">
      <img src="${ele.Poster}" class="card-img-top" alt="...">
      <div class=" card-body">
        <p class="card-font">${ele.Title}</p>

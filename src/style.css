@@ -18,4 +18,13 @@
     font-weight: bold;
     font-size: 1rem;
 }
+.color-drak {
+    background-color: #808e95;
+}
+.color-ligth {
+    background-color: #e2f1f8;
+}
+.color-medium {
+    background-color: #b0bec5;
+}
 @media()
