@@ -1,10 +1,15 @@
 # INFO MOVIES
 
 # Indice
+* Organización (#organizacion)
 * [Descubrimiento e investigación](#descubrimiento-e-investigacion)
 * [Síntesis y definición](#sintesis-y-definicion)
 * [Ideación](#ideacion)
 * [Prototipado](#prototipado)
+
+## Organizaión
+
+![organización](https://user-images.githubusercontent.com/47751532/56301615-d0590c80-60fd-11e9-82eb-d4955a297f66.PNG)
 
 ## Descubrimiento e investigación
 
@@ -117,6 +122,8 @@
 
 ## User testing
 
+* Despues de aplicar el testeo con distintos usuarios, procedimos a modificar en figma.
+![IMG_20190417_102304](https://user-images.githubusercontent.com/47751532/56300161-0e086600-60fb-11e9-877d-3031a9985b86.jpg)
 
 
 
